@@ -6,11 +6,12 @@ const StyledCaption = styled.span`
   font-family: 'Montserrat';
   font-size: 10px;
   color: #343E00;
+  text-transform: capitalize;
 `;
 
 const Caption = (props) => {
   return (
-    <StyledCaption>Likes</StyledCaption>
+    <StyledCaption>{props.children}</StyledCaption>
   )
 }
 

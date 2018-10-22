@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Action from './ActionsField/Action';
+import { ACTION_TYPES } from '../../utils';
 
 const ActionsWrapper = styled.div`
   display: flex;
@@ -9,11 +10,13 @@ const ActionsWrapper = styled.div`
 `;
 
 const ActionsField = (props) => {
+  const { likes, followers, following } = props.counters;
+
   return (
     <ActionsWrapper>
-      <Action />
-      <Action />
-      <Action />
+      <Action caption={ACTION_TYPES.LIKES} value={likes}/>
+      <Action caption={ACTION_TYPES.FOLLOWERS} value={followers}/>
+      <Action caption={ACTION_TYPES.FOLLOWING} value={following}/>
     </ActionsWrapper>
   );
 };

@@ -19,14 +19,37 @@ const Header = styled.section`
 `;
 
 export default class HeaderSection extends Component {
+  state = {
+    counters: {
+      likes: 0,
+      following: 0,
+      followers: 0
+    }
+  }
+
+  updateState = (data) => {
+    this.setState(Object.assign({}, this.state, data));
+  }
+  //TODO use update from immutable lib
+
+  increaseCounter = (key) => {
+    const value = this.state.counters[key] + 1;
+
+    this.updateState({ counters: Object.assign(
+      {}, 
+      this.state.counters, 
+      { [key]: value }) 
+    });
+  }
+
   render() {
     return (
       <Header>
         <Picture />
         <ShareButton />
-        <InfoField />
-        <ActionsField />
-        <FollowButton />
+        <InfoField increaseCounter={this.increaseCounter} />
+        <ActionsField counters={this.state.counters}/>
+        <FollowButton handleClick={this.increaseCounter} />
       </Header>
     );
   }

@@ -13,7 +13,7 @@ const InfoWrapper = styled.div`
 const InfoField = (props) => {
   return (
     <InfoWrapper>
-      <Name />
+      <Name increaseCounter={props.increaseCounter} />
       <Location />
     </InfoWrapper>
   )

@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ACTION_TYPES } from '../../../utils';
 
-const StyledLike = styled.span``;
+const StyledLike = styled.button``;
 
-const Name = (props) => {
+const LikeButton = (props) => {
   return (
-    <StyledLike>S</StyledLike>
+    <StyledLike onClick={() => props.handleClick(ACTION_TYPES.LIKES)}>LIKE</StyledLike>
   )
 };
 
-export default Name;
+export default LikeButton;

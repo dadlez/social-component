@@ -8,8 +8,8 @@ const ActionWrapper = styled.div``;
 const Action = (props) => {
   return (
     <ActionWrapper>
-      <Value />
-      <Caption />
+      <Value>{props.value}</Value>
+      <Caption>{props.caption}</Caption>
     </ActionWrapper>
   )
 }

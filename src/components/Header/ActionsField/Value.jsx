@@ -10,7 +10,7 @@ const StyledValue = styled.span`
 
 const Value = (props) => {
   return (
-    <StyledValue>123</StyledValue>
+    <StyledValue>{props.children}</StyledValue>
   );
 }
 

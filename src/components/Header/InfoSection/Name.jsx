@@ -17,7 +17,7 @@ const Name = (props) => {
       <Content>
         Harvey Spectre
       </Content>
-      <LikeButton />
+      <LikeButton handleClick={props.increaseCounter} />
     </NameWrapper>
   )
 };

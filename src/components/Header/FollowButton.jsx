@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ACTION_TYPES } from '../../utils';
 
 const StyledFollow = styled.button`
   background: #FFA640;
@@ -17,7 +18,7 @@ const StyledFollow = styled.button`
 
 const FollowButton = (props) => {
   return (
-    <StyledFollow>Follow</StyledFollow>
+    <StyledFollow onClick={() => props.handleClick(ACTION_TYPES.FOLLOWERS)}>Follow</StyledFollow>
   )
 }
 
