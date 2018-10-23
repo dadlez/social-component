@@ -9,8 +9,9 @@ const StyledAuthor = styled.span`
 `;
 
 const Author = (props) => {
+  console.log('Author.props.children', props.children)
   return (
-    <StyledAuthor>Mike Ross</StyledAuthor>
+    <StyledAuthor>{props.children}</StyledAuthor>
   );
 };
 

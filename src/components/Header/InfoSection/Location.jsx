@@ -10,7 +10,7 @@ const StyledLocation = styled.div`
 
 const Location = (props) => {
   return (
-    <StyledLocation>New York, USA</StyledLocation>
+    <StyledLocation>{props.children}</StyledLocation>
   );
 }
 

@@ -15,7 +15,7 @@ const Name = (props) => {
   return (
     <NameWrapper>
       <Content>
-        Harvey Spectre
+        {props.children}
       </Content>
       <LikeButton handleClick={props.increaseCounter} />
     </NameWrapper>

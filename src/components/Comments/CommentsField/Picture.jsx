@@ -13,7 +13,7 @@ const StyledPicture = styled.img`
 
 const Picture = (props) => {
   return (
-    <StyledPicture />
+    <StyledPicture src={props.url || ''} alt=''/> //TODO fill with placeholder url
   );
 };
 

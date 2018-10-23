@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Comment from './CommentsField/Comment';
 
 const CommentsWrapper = styled.div`
-  height: 475px;
+  max-height: 475px;
   border-bottom: 1px solid #EBEBEB;
   overflow: scroll;
   overflow-x: hidden;
@@ -12,9 +12,9 @@ const CommentsWrapper = styled.div`
 const CommentsField = (props) => {
   return (
     <CommentsWrapper>
-      <Comment />
-      <Comment />
-      <Comment />
+      {props.children.map((commentData, index) => (
+        <Comment {...commentData} key={index}/>
+      ))}
     </CommentsWrapper>
   );
 };

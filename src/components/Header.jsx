@@ -5,6 +5,7 @@ import ShareButton from './Header/ShareButton';
 import InfoField from './Header/InfoField';
 import ActionsField from './Header/ActionsField';
 import FollowButton from './Header/FollowButton';
+import fake_person from '../mocks/person.json';
 
 const Header = styled.section`
   position: relative;
@@ -24,7 +25,14 @@ export default class HeaderSection extends Component {
       likes: 0,
       following: 0,
       followers: 0
-    }
+    }, 
+    person: {}
+  }
+
+  componentDidMount() {
+    //TODO write a fetch fn to fetch mock data instead of import
+    // put counters into person in mocks and seperate it on fetching data
+    this.setState({ person: fake_person })
   }
 
   updateState = (data) => {
@@ -47,7 +55,7 @@ export default class HeaderSection extends Component {
       <Header>
         <Picture />
         <ShareButton />
-        <InfoField increaseCounter={this.increaseCounter} />
+        <InfoField increaseCounter={this.increaseCounter} {...this.state.person}/>
         <ActionsField counters={this.state.counters}/>
         <FollowButton handleClick={this.increaseCounter} />
       </Header>

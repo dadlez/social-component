@@ -10,7 +10,7 @@ letter-spacing: 0;`;
 
 const Time = (props) => {
   return (
-    <StyledTime>1d</StyledTime>
+    <StyledTime>{props.children.toLocaleDateString()}</StyledTime>
   );
 };
 

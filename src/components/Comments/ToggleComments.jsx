@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Toggle = styled.div`
   margin-bottom: 10px;
   font-family: 'Montserrat';
   font-size: 14px;
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 
 const ToggleComments = (props) => {
   return (
-    <Wrapper>Toggle Comments (123)</Wrapper>
+    <Toggle onClick={props.handleClick}>{props.hidden ? 'Show' : 'Hide'} Comments ({props.number})</Toggle>
   );
 }
 

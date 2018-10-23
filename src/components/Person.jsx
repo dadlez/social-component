@@ -7,14 +7,14 @@ const StyledPerson = styled.div`
   box-sizing: border-box;
   max-width: 500px;
   min-width: 320px;
-  height: 877px;
+  max-height: 877px;
   margin: 20px auto;
 `;
 
 const BackgroundWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 813px;
+  max-height: 813px;
   background: #FFFFFF;
   box-shadow: 0 0 4px 0 rgba(172,172,172,0.50);
   border-radius: 5px;
