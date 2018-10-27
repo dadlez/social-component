@@ -33,7 +33,7 @@ const Comment = (props) => {
       <CommentHeader>
         <Picture url={picture}/>
         <Author>{author}</Author>
-        <Time>{new Date(time)}</Time>
+        <Time>{time}</Time>
       </CommentHeader>
       <Value>{text}</Value>
     </CommentWrapper>

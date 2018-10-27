@@ -23,15 +23,22 @@ export default class CommentsSection extends Component {
   }
 
   componentDidMount() {
-    this.setState({ comments: fake_comments })
+    this.setState({ comments: this.sortComments(fake_comments) })
   }
 
   toggleVisibility = () => {
     this.setState({ hidden: !this.state.hidden });
   }
 
+  sortComments = (comments) => comments.sort((a, b) => {
+    console.log()
+    return new Date(a.time) - new Date(b.time);
+  })
+
   addComment = (comment) => {
-    const comments = [...this.state.comments, comment];
+    console.log(comment)
+    const comments = this.sortComments([...this.state.comments]);
+    comments.push(comment);
     this.setState({ comments });
   }
 

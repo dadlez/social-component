@@ -3,3 +3,5 @@ export const ACTION_TYPES = {
 	FOLLOWERS: 'followers',
 	FOLLOWING: 'following'
 }
+
+export const getCurrentUrl = () => window.location.href;
