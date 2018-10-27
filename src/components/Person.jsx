@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import HeaderSection from './Header';
 import CommentsSection from './Comments';
+import { getScreenSize } from '../utils';
 
 const StyledPerson = styled.div`
   box-sizing: border-box;
@@ -14,7 +15,8 @@ const StyledPerson = styled.div`
 const BackgroundWrapper = styled.div`
   position: relative;
   width: 100%;
-  max-height: 813px;
+  max-height: ${props => props.screenSize === 'small' ? '813' : '797'}px;
+  transition: max-height 0.2s;
   background: #FFFFFF;
   box-shadow: 0 0 4px 0 rgba(172,172,172,0.50);
   border-radius: 5px;
@@ -34,14 +36,29 @@ const StyledContent = styled.div`
 `;
 
 export default class Person extends Component {
+  state = {
+    screenSize: getScreenSize()
+  }
+
+  componentDidMount() {
+    window.onresize = () => {
+      const size = getScreenSize();
+      if (size !== this.state.screenSize) this.setState({ screenSize: size })
+    };
+  }
+
+  componentWillUnmount() {
+    window.onresize = null;
+  }
+
   render() {
     return (
       <StyledPerson>
-        <BackgroundWrapper>
+        <BackgroundWrapper screenSize={this.state.screenSize}>
           <BackgtoundBar />
           <StyledContent>
-            <HeaderSection />
-            <CommentsSection />
+            <HeaderSection screenSize={this.state.screenSize} />
+            <CommentsSection screenSize={this.state.screenSize} />
           </StyledContent>
         </BackgroundWrapper>
       </StyledPerson>

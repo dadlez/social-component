@@ -4,13 +4,16 @@ import Picture from './Header/Picture';
 import ShareButton from './Header/ShareButton';
 import InfoField from './Header/InfoField';
 import ActionsField from './Header/ActionsField';
-import FollowButton from './Header/FollowButton';
+import { getScreenSize } from '../utils';
+
 import fake_person from '../mocks/person.json';
 
 const Header = styled.section`
   position: relative;
-  height: 235px;
+  ${props => `height: ${props.screenSize === 'small' ? '235px' : '183px'}`}
+  transition: height 0.2s;
   margin: auto 17px 15px 17px;
+  padding: 0 20px;
   background: #FFFFFF;
   box-shadow: 0 0 4px 0 rgba(172,172,172,0.50);
   border-radius: 5px;
@@ -31,8 +34,8 @@ export default class HeaderSection extends Component {
 
   componentDidMount() {
     //TODO write a fetch fn to fetch mock data instead of import
-    // put counters into person in mocks and seperate it on fetching data
-    this.setState({ person: fake_person })
+    // put counters into person data in mocks and seperate it on fetching data
+    this.setState({ person: fake_person });
   }
 
   updateState = (data) => {
@@ -52,12 +55,19 @@ export default class HeaderSection extends Component {
 
   render() {
     return (
-      <Header>
-        <Picture />
+      <Header screenSize={this.props.screenSize}>
+        <Picture screenSize={this.props.screenSize} />
         <ShareButton />
-        <InfoField increaseCounter={this.increaseCounter} {...this.state.person}/>
-        <ActionsField counters={this.state.counters}/>
-        <FollowButton handleClick={this.increaseCounter} />
+        <InfoField 
+          increaseCounter={this.increaseCounter} 
+          screenSize={this.props.screenSize}
+          {...this.state.person}
+        />
+        <ActionsField 
+          counters={this.state.counters} 
+          increaseCounter={this.increaseCounter}
+          screenSize={this.props.screenSize}
+        />
       </Header>
     );
   }

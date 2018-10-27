@@ -31,12 +31,10 @@ export default class CommentsSection extends Component {
   }
 
   sortComments = (comments) => comments.sort((a, b) => {
-    console.log()
     return new Date(a.time) - new Date(b.time);
   })
 
   addComment = (comment) => {
-    console.log(comment)
     const comments = this.sortComments([...this.state.comments]);
     comments.push(comment);
     this.setState({ comments });
@@ -53,7 +51,7 @@ export default class CommentsSection extends Component {
         />
       {!this.state.hidden && (
         <>
-          <CommentsField hidden={this.state.hidden}>
+          <CommentsField hidden={this.state.hidden} screenSize={this.state.screenSize}>
             {this.state.comments}
           </CommentsField>
           <AddComment addComment={this.addComment} />

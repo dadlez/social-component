@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Comment from './CommentsField/Comment';
 
 const CommentsWrapper = styled.div`
-  max-height: 475px;
+  max-height: ${props => props.screenSize === 'small' ? '475' : '571'}px;
   border-bottom: 1px solid #EBEBEB;
   overflow: scroll;
   overflow-x: hidden;

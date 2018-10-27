@@ -3,5 +3,10 @@ export const ACTION_TYPES = {
 	FOLLOWERS: 'followers',
 	FOLLOWING: 'following'
 }
+const BREAKPOINT = 500;
 
 export const getCurrentUrl = () => window.location.href;
+
+export const getScreenSize = () => {
+	return window.screen.availWidth <= BREAKPOINT ? 'small' : 'big';
+};
