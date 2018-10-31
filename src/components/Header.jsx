@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { fetchData, RESOURCES } from '../utils';
 import Picture from './Header/Picture';
 import ShareButton from './Header/ShareButton';
 import InfoField from './Header/InfoField';
 import ActionsField from './Header/ActionsField';
-import { getScreenSize } from '../utils';
-
-import fake_person from '../mocks/person.json';
 
 const Header = styled.section`
   position: relative;
@@ -29,13 +27,24 @@ export default class HeaderSection extends Component {
       following: 0,
       followers: 0
     }, 
-    person: {}
+    person: {
+      picture: {
+        url: '',
+        alt: ''
+      },
+      name: '',
+      location: ''
+    }
   }
 
   componentDidMount() {
-    //TODO write a fetch fn to fetch mock data instead of import
-    // put counters into person data in mocks and seperate it on fetching data
-    this.setState({ person: fake_person });
+    // put counters into person object and seperate it on fetching data
+    fetchData(RESOURCES.PERSON)
+      .then(({ likes, following, followers, ...person }) => this.setState({ 
+        person, 
+        conuters: { likes, following, followers }
+      }))
+      .catch(error => console.error('Fetching data failed with error:', error))
   }
 
   updateState = (data) => {
@@ -56,7 +65,7 @@ export default class HeaderSection extends Component {
   render() {
     return (
       <Header screenSize={this.props.screenSize}>
-        <Picture screenSize={this.props.screenSize} />
+        <Picture {...this.state.person.picture} screenSize={this.props.screenSize} />
         <ShareButton />
         <InfoField 
           increaseCounter={this.increaseCounter} 

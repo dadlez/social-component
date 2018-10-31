@@ -26,7 +26,7 @@ const Value = styled.div`
 
 const Comment = (props) => {
   const { picture, author, time, text } = props;
-  // TODO make time to custom string in Time
+  // TODO make custom format in Time (ie '2d')
 
   return (
     <CommentWrapper>

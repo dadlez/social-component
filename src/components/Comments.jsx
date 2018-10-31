@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { fetchData, RESOURCES } from '../utils';
 import ToggleComments from './Comments/ToggleComments';
 import CommentsField from './Comments/CommentsField';
 import AddComment from './Comments/AddComment';
-import fake_comments from '../mocks/comments.json';
-console.log(fake_comments)
 
 const Comments = styled.section`
   position: relative;
@@ -16,6 +15,7 @@ const Comments = styled.section`
 `;
 //TODO correct the height of CommentsSection or CommentsField when empty CommentsField
 
+
 export default class CommentsSection extends Component {
   state = {
     hidden: false,
@@ -23,7 +23,10 @@ export default class CommentsSection extends Component {
   }
 
   componentDidMount() {
-    this.setState({ comments: this.sortComments(fake_comments) })
+    //TODO make handleError() in utils or handle it inside fetchData();
+    fetchData(RESOURCES.COMMENTS)
+      .then(comments => this.setState({ comments: this.sortComments(comments) }))
+      .catch(error => console.error('Fetching data failed with error:', error))
   }
 
   toggleVisibility = () => {

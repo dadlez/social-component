@@ -15,11 +15,16 @@ const StyledPicture = styled.div`
   transition-duration: 0.2s;
   background: #FFA640;
   border-radius: 50%;
+  object-fit: scale-down;
+  overflow: hidden;
 `;
 
 const Picture = (props) => {
+  console.log(props)
   return (
-    <StyledPicture {...props}>empty_foto</StyledPicture>
+    <StyledPicture {...props}>
+      <img src={props.url || '#'} alt={props.alt} />
+    </StyledPicture>
   )
 };
 

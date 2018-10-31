@@ -79,7 +79,7 @@ class AddComment extends Component {
               onChange={this.handleChange('name')}
               required 
             />
-            <button style={{visibility: 'hidden'}} type='submit' />{/*why enter not working without button?*/}
+            <button style={{visibility: 'hidden'}} type='submit' />{/*TODO solve enter not working without button*/}
           </>
         )}
         </form>
