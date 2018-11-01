@@ -1,3 +1,12 @@
+To run the app:
+- npm install
+- npm start
+
+It will start json-server on port 3002 and a webpack-dev-server on port 3000 with NODE_ENV='develoment'. This flag will be used to set data fetching endpoint to 'http://localhost:3002/'.
+For production use set the variable BASE_URL to desired endpoint.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
