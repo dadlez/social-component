@@ -8,7 +8,7 @@ import AddComment from './Comments/AddComment';
 const Comments = styled.section`
   position: relative;
   margin: auto 17px;
-  padding: 25px 0 19px;
+  padding: 25px 0 ${props => props.screenSize === 'small' ? 9 : 22}px;
   background: #FFFFFF;
   box-shadow: 0 0 4px 0 rgba(172,172,172,0.50);
   border-radius: 5px;
@@ -46,7 +46,7 @@ export default class CommentsSection extends Component {
   render() {
     //TODO move AddComment into CommentField
     return (
-      <Comments>
+      <Comments screenSize={this.props.screenSize}>
         <ToggleComments 
           handleClick={this.toggleVisibility} 
           number={this.state.comments.length} 
@@ -54,7 +54,7 @@ export default class CommentsSection extends Component {
         />
       {!this.state.hidden && (
         <>
-          <CommentsField hidden={this.state.hidden} screenSize={this.state.screenSize}>
+          <CommentsField hidden={this.state.hidden} screenSize={this.props.screenSize}>
             {this.state.comments}
           </CommentsField>
           <AddComment addComment={this.addComment} />

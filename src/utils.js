@@ -1,10 +1,11 @@
-const BREAKPOINT = 500;
 /**
  * set data endpoint below: BASE_URL
  * schema example in mock.json
  */
 const BASE_URL ='';
 const mockBaseUrl = 'http://localhost:3002/';
+
+const BREAKPOINT = 500;
 
 export const ACTION_TYPES = {
 	LIKES: 'likes',

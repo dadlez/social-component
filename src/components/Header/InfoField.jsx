@@ -8,8 +8,10 @@ const InfoWrapper = styled.div`
   flex-direction: column;
   ${props => props.screenSize === 'small' 
   ? `align-items: center;`
-  : `align-items: flex-start;
-  padding-left: 87px;`};
+  : `
+    align-items: flex-start;
+    padding-left: 87px;`
+  };
   margin: 40px 0 35px;
 `;
 

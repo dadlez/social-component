@@ -39,6 +39,7 @@ export default class Person extends Component {
   state = {
     screenSize: getScreenSize()
   }
+  //TODO move screenSize to react context
 
   componentDidMount() {
     window.onresize = () => {

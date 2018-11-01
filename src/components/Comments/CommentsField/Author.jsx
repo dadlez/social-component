@@ -9,7 +9,6 @@ const StyledAuthor = styled.span`
 `;
 
 const Author = (props) => {
-  console.log('Author.props.children', props.children)
   return (
     <StyledAuthor>{props.children}</StyledAuthor>
   );

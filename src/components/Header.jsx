@@ -42,7 +42,7 @@ export default class HeaderSection extends Component {
     fetchData(RESOURCES.PERSON)
       .then(({ likes, following, followers, ...person }) => this.setState({ 
         person, 
-        conuters: { likes, following, followers }
+        counters: { likes, following, followers }
       }))
       .catch(error => console.error('Fetching data failed with error:', error))
   }

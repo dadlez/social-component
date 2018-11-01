@@ -3,14 +3,15 @@ import styled from 'styled-components';
 
 const AddCommentWrapper = styled.div`
   margin: 14px 26px 0;
-  padding-bottom: 5px;
+  padding-bottom: 5px;  
 `;
 
-
-const Input = (props) => {
+const Input = ({ adding, ...props }) => {
+  if (adding) {
+    return <textarea {...props} />
+  }
   return <input {...props} />
 }
-// TODO make textarea for comment field
 
 const StyledInput = styled(Input)`
   width: 100%;
@@ -22,6 +23,20 @@ const StyledInput = styled(Input)`
   border: none;
   border-bottom: 2px solid #DBE0E8;
 `;
+
+const StyledButton = styled.button`
+  background: #FFA640;
+  border: none;
+  border-radius: 100px;
+  padding: 14px;
+  font-family: 'Montserrat';
+  font-size: 14px;
+  font-weight: bolder;
+  color: #FFFFFF;
+  letter-spacing: 4.2px;
+  text-transform: uppercase;
+`;
+// TODO move reused styles to styles.js
 
 class AddComment extends Component {
   state = {
@@ -38,7 +53,7 @@ class AddComment extends Component {
       text: this.state.fields.text,
       author: this.state.fields.name,
       time: (new Date()).toLocaleDateString(),
-      picture: null
+      picture: {}
     }
     this.props.addComment(newComment)
     // TODO make a nice resetState fn()
@@ -63,9 +78,10 @@ class AddComment extends Component {
 
   render() {
     return (
-      <AddCommentWrapper>
-        <form onSubmit={this.handleSubmit}>
+      <AddCommentWrapper adding={this.state.adding}>
+        <form onSubmit={this.handleSubmit} style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>{/*fix for centering form elements without creating styled component*/}
           <StyledInput 
+            adding={this.state.adding}
             placeholder='Add comment' 
             onFocus={this.handleFormFocus} 
             value={this.state.fields.text} 
@@ -79,7 +95,7 @@ class AddComment extends Component {
               onChange={this.handleChange('name')}
               required 
             />
-            <button style={{visibility: 'hidden'}} type='submit' />{/*TODO solve enter not working without button*/}
+            <StyledButton type='submit'>add</StyledButton>{/*TODO solve enter not working without button*/}
           </>
         )}
         </form>

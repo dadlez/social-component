@@ -25,13 +25,13 @@ const Value = styled.div`
 `;
 
 const Comment = (props) => {
-  const { picture, author, time, text } = props;
+  const { picture: { url, alt }, author, time, text } = props;
   // TODO make custom format in Time (ie '2d')
 
   return (
     <CommentWrapper>
       <CommentHeader>
-        <Picture url={picture}/>
+        <Picture url={url} alt={alt}/>
         <Author>{author}</Author>
         <Time>{time}</Time>
       </CommentHeader>

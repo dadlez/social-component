@@ -8,6 +8,10 @@ const StyledPicture = styled.div`
   top: calc(-50%);
   left: calc(-40px - 10px);
   background: #FFA640;
+  background-image: url(${props => props.url});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
   border-radius: 50%;
   object-fit: scale-down;
   overflow: hidden;
@@ -16,11 +20,7 @@ const StyledPicture = styled.div`
 // TODO move shared styles into styles.js
 
 const Picture = (props) => {
-  return (
-    <StyledPicture>
-      <img src={props.url || '#'} alt={props.alt || 'pict'} />
-    </StyledPicture> 
-  );
+  return <StyledPicture url={props.url || '#'} alt={props.alt || 'pict'} />;
 };
 
 export default Picture;
