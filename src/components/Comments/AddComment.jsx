@@ -6,12 +6,14 @@ const AddCommentWrapper = styled.div`
   padding-bottom: 5px;  
 `;
 
-const Input = ({ adding, ...props }) => {
+const Input = React.forwardRef((props, ref) => {
+  const { adding, ...innerProps } = props;
+
   if (adding) {
-    return <textarea {...props} />
+    return <textarea {...innerProps} ref={ref}/>
   }
-  return <input {...props} />
-}
+  return <input {...innerProps} ref={ref}/>
+})
 
 const StyledInput = styled(Input)`
   width: 100%;
@@ -39,12 +41,26 @@ const StyledButton = styled.button`
 // TODO move reused styles to styles.js
 
 class AddComment extends Component {
-  state = {
-    fields: {
-      text: '',
-      name: ''
-    },
-    adding: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      fields: {
+        text: '',
+        name: ''
+      },
+      adding: false
+    };
+    this.comment = React.createRef();
+    this.name = React.createRef();
+  }
+
+  componentDidUpdate() {
+    //adds focus to rerendered input after (and only then) switching to adding new comment
+    const addFocus = this.state.adding && !(this.name.current === document.activeElement);
+    if (addFocus) {
+      this.comment.current.focus()
+    }
+    //TODO - add fetching author pict from db by name
   }
 
   handleSubmit = e => {
@@ -86,6 +102,8 @@ class AddComment extends Component {
             onFocus={this.handleFormFocus} 
             value={this.state.fields.text} 
             onChange={this.handleChange('text')}
+            ref={this.comment}
+            required
           />
         {this.state.adding && (
           <>
@@ -93,9 +111,10 @@ class AddComment extends Component {
               placeholder='Your name' 
               value={this.state.fields.name} 
               onChange={this.handleChange('name')}
+              ref={this.name}
               required 
             />
-            <StyledButton type='submit'>add</StyledButton>{/*TODO solve enter not working without button*/}
+            <StyledButton type='submit'>add</StyledButton>
           </>
         )}
         </form>
