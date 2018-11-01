@@ -10,7 +10,7 @@
     "styled-components": "^4.0.2"
   },
   "scripts": {
-    "start": "json-server --watch mocks.json --port 3002 | NODE_ENV='dev' react-scripts start",
+    "start": "json-server --watch mocks.json --port 3002 | react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
